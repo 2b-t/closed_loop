@@ -4,7 +4,7 @@
     
     <!-- Macro for elements of box geometry -->
     <xacro:macro name="elem" params="element_number element_colour:=White">
-		<!-- Element link without joint -->
+		<!-- Link without joint -->
 		<link name="${element_name}_${element_number}">
 			<visual>
 				<geometry>
@@ -74,7 +74,7 @@
     <!-- You can even use macro syntax ${} here as illustraded by the
          the variable ${element_name} -->
     <!-- The location of the joint in the parent frame is determined 
-         from the location of the child and the initial position -->
+         by the location of the child and the initial position -->
     <gazebo>
         <joint name='1_to_4' type='revolute'>
 		  <child>${element_name}_1</child>
