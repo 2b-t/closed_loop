@@ -5,20 +5,20 @@
 ## Overview
 This is a workaround on how to **include parallel robots into Robot Operating System ROS (URDF) and GazeboSim (SDF) by using Xacro** without having to retype the geometry manually twice for the URDF and the SDF-files.
 
-## The issue
+### The issue
 The Unified Robot Description Format (UDRF) only supports serial chains and therefore can't describe parallel robots due to their closed loops. Simulation with Gazebo on the other hand supports parallel geometries such as the Simulation Description Format (SDF). As a consequence both files are often written manually, making it error prone in case the geometry changes.
 A [previous workaround](https://github.com/wojiaojiao/pegasus_gazebo_plugins) (that is anyways more complicated) did not work for me, so I had to come up with my own solution. 
 In this workaround **closed loops are broken up into serial chains** and the **missing joints** are supplied to only Gazebo with corresponding instructions in **SDF**. Furthermore it introduces **XML macros with Xacro** to reduce code redundancy. In the process a single UDRF that can be saved on the ROS parameter server is generated that still contains the SDF to **automatically recover the full parallel geometry in GazeboSim**.
 
-## The files
+### The files
 The files simulate a simple closed chain similar to the example in SDF by [The Construct](https://youtu.be/hglRGiNHRno).
-- 'model/closed_loop.xacro' is the main file that loads the components located in the other two xacro files
-- 'model/parameters.xacro' contains the geometry parameters such as height, depth, width, mass and macros for the inertial matrix
-- 'model/element.xacro' contains macros for a single element and creates the entire geometry
-- 'launch/closed_loop.launch' is the launch-file for the ROS parameter server and loads the geometry into Gazebo
+- `model/closed_loop.xacro` is the main file that loads the components located in the other two xacro files
+- `model/parameters.xacro` contains the geometry parameters such as height, depth, width, mass and macros for the inertial matrix
+- `model/element.xacro` contains macros for a single element and creates the entire geometry
+- `launch/closed_loop.launch` is the launch-file for the ROS parameter server and loads the geometry into Gazebo
 
 ## Launch my solution
-Copy the folder 'urdf_sdf' to the source folder of your catkin workspace (e.g. '~/catkin_ws/src') or directly clone it by typing
+Copy the folder `urdf_sdf` to the source folder of your catkin workspace (e.g. `~/catkin_ws/src`) or directly clone it by typing
 ```
 $ cd ~/catkin_ws/src 
 $ git clone https://github.com/2b-t/ros_closed_loops.git 
@@ -53,4 +53,4 @@ Convert the URDF file to SDF
 $ gz sdf -p your_parallel_robot.urdf > your_parallel_robot.sdf
 ```
 Open the SDF-file and look for the corresponding joint you want to break the closed loop at. I think it is generally best to split the parallel robot into serial chains where the end-effector is the last link and then introduce the joints between the other legs and the end-effector by SDF-code injection.
-Adapt the syntax that you found in the SDF-file to the other joins by introducing parameters and copy it into your UDRF-file encapsulated in '<gazebo> ... </gazebo>' tags. The guides ([1](http://sdformat.org/spec?ver=1.7&elem=joint) and [2](http://sdformat.org/tutorials?tut=spec_model_kinematics)) on the official SDF page might be helpful to understand the SDF-syntax.
+Adapt the syntax that you found in the SDF-file to the other joins by introducing parameters and copy it into your UDRF-file encapsulated in `<gazebo> ... </gazebo>` tags. The guides ([1](http://sdformat.org/spec?ver=1.7&elem=joint) and [2](http://sdformat.org/tutorials?tut=spec_model_kinematics)) on the official SDF page might be helpful to understand the SDF-syntax.
