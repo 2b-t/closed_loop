@@ -12,10 +12,10 @@ In this workaround **closed loops are broken up into serial chains** and the **m
 
 ### The files
 The files simulate a simple closed chain similar to the example in SDF by [The Construct](https://youtu.be/hglRGiNHRno).
-- `model/closed_loop.xacro` is the main file that loads the components located in the other two xacro files
-- `model/parameters.xacro` contains the geometry parameters such as height, depth, width, mass and macros for the inertial matrix
-- `model/element.xacro` contains macros for a single element and creates the entire geometry
-- `launch/closed_loop.launch` is the launch-file for the ROS parameter server and loads the geometry into Gazebo
+- `model/closed_loop.xacro` is the main file that *loads the components located in the other two Xacro files*
+- `model/parameters.xacro` contains the *geometry parameters* such as height, depth, width, mass and macros for the inertial matrix
+- `model/element.xacro` contains macros for a single element and *creates the entire geometry*
+- `launch/closed_loop.launch` is the *launch-file* for the ROS parameter server and loads the geometry into Gazebo
 
 ## Launch my solution
 Copy the folder `urdf_sdf` to the source folder of your catkin workspace (e.g. `~/catkin_ws/src`) or directly **clone this repository** by typing
@@ -52,5 +52,5 @@ $ check_urdf your_parallel_robot.urdf
 ```
 $ gz sdf -p your_parallel_robot.urdf > your_parallel_robot.sdf
 ```
-**Open the SDF-file** and look for the **corresponding joint** you want to break the closed loop at. I think it is generally best to split the parallel robot into serial chains where the end-effector is the last link and then introduce the joints between the other legs and the end-effector by SDF-code injection.
-Now **introduce the other legs of the parallel robot as serial chains but without the final joints to end-effector** (In order to respect URDF's serial chains of course the first chain has to stay connected to the end-effector!). Adapt the syntax that you found in the SDF-file for the joint between the first leg and the end effector to the other final joints by introducing parameters and **copy it into your UDRF-file encapsulated in `<gazebo> ... </gazebo>`** tags. The guides ([1](http://sdformat.org/spec?ver=1.7&elem=joint) and [2](http://sdformat.org/tutorials?tut=spec_model_kinematics)) on the official SDF page might be helpful to understand the SDF-syntax.
+**Open the SDF-file** and look for the **corresponding joint** you want to break the closed loop at (I personally think it is generally best to split the parallel robot into serial chains where the end-effector is the last link, keep one of these connections and then introduce the joints between the other legs and the end-effector by SDF-code injection.).
+Now **introduce the other legs of the parallel robot as serial chains but without the final joints to end-effector** (In order to respect URDF's serial chains of course the first chain has to stay connected to the end-effector!). Adapt the syntax that you found in the SDF-file for the joint between the first leg and the end effector to the other final joints by introducing parameters and **copy it into your UDRF-file encapsulated in `<gazebo> ... </gazebo>`** tags (last part of `model/element.xacro` in my code). Furthermore the guides ([1](http://sdformat.org/spec?ver=1.7&elem=joint) and [2](http://sdformat.org/tutorials?tut=spec_model_kinematics)) on the official SDF page might be helpful to understand the SDF-syntax.
