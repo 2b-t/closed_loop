@@ -36,7 +36,7 @@ and my corresponding **launch file** that launches the ROS parameter server and 
 ```
 $ roslaunch urdf_sdf closed_loop.launch
 ```
-This should bring up a closed-loop in GazeboSim that collapses to the side.
+This should bring up a closed loop of four rectangular elements in GazeboSim that collapses to the side.
 
 ## Adapt it to your robot
 In order to modify the above code for your robot create a Xacro-file for the **parallel robot with a single leg only** at first. Your robot is likely under-determined and the end-effector would simply fall to the floor if you would simulate this geometry.
