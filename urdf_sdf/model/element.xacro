@@ -2,7 +2,7 @@
 <robot 
      xmlns:xacro="http://www.ros.org/wiki/xacro" name="element">
     
-    <!-- Macro for elements of box geometry -->
+    <!-- Macro for a single element of box geometry -->
     <xacro:macro name="elem" params="element_number element_colour:=White">
 		<!-- Link without joint -->
 		<link name="${element_name}_${element_number}">
