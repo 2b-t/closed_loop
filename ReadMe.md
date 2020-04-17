@@ -18,10 +18,10 @@ The files simulate a simple closed loop of elements similar to the example in SD
 - `launch/closed_loop.launch` is the *launch-file* for the ROS parameter server and loads the geometry into Gazebo
 
 ## Launch my solution
-Copy the folder `urdf_sdf` to the source folder of your catkin workspace (e.g. `~/catkin_ws/src`) or directly **clone this repository** by typing
+Copy this folder to the source folder of your catkin workspace (e.g. `~/catkin_ws/src`) or directly **clone this repository** by typing
 ```
 $ cd ~/catkin_ws/src 
-$ git clone https://github.com/2b-t/ros_closed_loops.git 
+$ git clone https://github.com/2b-t/closed_loop.git 
 ```
 **Rebuild your workspace** with
 ```
@@ -34,7 +34,7 @@ $ roslaunch gazebo_ros empty_world.launch
 ```
 and my corresponding **launch file** that launches the ROS parameter server and loads the UDRF-model into GazeboSim with
 ```
-$ roslaunch urdf_sdf closed_loop.launch
+$ roslaunch closed_loop closed_loop.launch
 ```
 This should bring up a closed loop of four rectangular elements in GazeboSim that collapses to the side.
 

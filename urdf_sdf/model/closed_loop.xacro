@@ -1,8 +1,0 @@
-<?xml version="1.0"?>
-<robot 
-     xmlns:xacro="http://www.ros.org/wiki/xacro" name="closed_loop">
-    
-    <!-- Files to include -->
-    <xacro:include filename="$(find urdf_sdf)/model/parameters.xacro" />
-    <xacro:include filename="$(find urdf_sdf)/model/element.xacro" />
-</robot>
