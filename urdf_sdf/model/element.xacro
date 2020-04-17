@@ -53,21 +53,21 @@
 		<axis xyz="1 0 0"/>
 		<parent link="${element_name}_1"/>
 		<child  link="${element_name}_2"/>
-		<origin xyz="0 ${-height} 0" rpy="-1.57 0 0"/>
+		<origin xyz="0 ${-height} 0" rpy="${-pi/2} 0 0"/>
     </joint>
     <!-- 3 to 2 -->
     <joint name="3_to_2" type="continuous">
 		<axis xyz="1 0 0"/>
 		<parent link="${element_name}_2"/>
 		<child  link="${element_name}_3"/>
-		<origin xyz="0 ${-height} 0" rpy="-1.57 0 0"/>
+		<origin xyz="0 ${-height} 0" rpy="${-pi/2} 0 0"/>
     </joint>
     <!-- 4 to 3 -->
     <joint name="4_to_3" type="continuous">
 		<axis xyz="1 0 0"/>
 		<parent link="${element_name}_3"/>
 		<child  link="${element_name}_4"/>
-		<origin xyz="0 ${-height} 0" rpy="-1.57 0 0"/>
+		<origin xyz="0 ${-height} 0" rpy="${-pi/2} 0 0"/>
     </joint>
     
     <!-- 1 to 4: Close the loop by injection of SDF-code into UDRF -->

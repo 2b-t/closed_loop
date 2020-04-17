@@ -11,7 +11,7 @@ A [previous workaround](https://github.com/wojiaojiao/pegasus_gazebo_plugins) (t
 In this workaround **closed loops are broken up into serial chains** and the **missing joints** are supplied to only Gazebo with corresponding instructions in **SDF**. Furthermore it introduces **XML macros with Xacro** to reduce code redundancy. In the process a single UDRF that can be saved on the ROS parameter server is generated that still contains the SDF to **automatically recover the full parallel geometry in GazeboSim**.
 
 ### The files
-The files simulate a simple closed chain similar to the example in SDF by [The Construct](https://youtu.be/hglRGiNHRno).
+The files simulate a simple closed loop of elements similar to the example in SDF by [The Construct](https://youtu.be/hglRGiNHRno) that collapses to the side under gravity.
 - `model/closed_loop.xacro` is the main file that *loads the components located in the other two Xacro files*
 - `model/parameters.xacro` contains the *geometry parameters* such as height, depth, width, mass and macros for the inertial matrix
 - `model/element.xacro` contains macros for a single element and *creates the entire geometry*
