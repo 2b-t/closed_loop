@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package>
-  <name>urdf_sdf</name>
+  <name>closed_loop</name>
   <version>0.0.1</version>
-  <description>The urdf_sdf package</description>
+  <description>The closed_loop package</description>
   
   <maintainer email="tobit.flatscher@outlook.com">tobit</maintainer>
 
