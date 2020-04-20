@@ -1,4 +1,4 @@
-# Closed loops in ROS and Gazebo with SDF-code injection - Example four-bar linkage
+# Closed loops in ROS and Gazebo with SDF-code injection - Four-bar linkage example
 
 *Author: Tobit Flatscher (April 2020)
 
