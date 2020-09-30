@@ -1,6 +1,6 @@
 # Closed loops in ROS and Gazebo with SDF-code injection - Four-bar linkage example
 
-*Author: Tobit Flatscher (April 2020)
+*Author: [Tobit Flatscher](https://github.com/2b-t) (April 2020)
 
 ## Overview
 This is a workaround on how to **include parallel robots into Robot Operating System ROS (URDF) and GazeboSim (SDF) by using Xacro** without having to retype the geometry manually twice for the URDF and the SDF-files.
