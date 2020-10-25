@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot 
-     xmlns:xacro="http://www.ros.org/wiki/xacro" name="closed_loop">
+    xmlns:xacro="http://www.ros.org/wiki/xacro" name="closed_loop">
 
     <!-- Files to include -->
     <xacro:include filename="$(find closed_loop)/model/parameters.xacro" />

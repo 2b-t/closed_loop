@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <robot 
-     xmlns:xacro="http://www.ros.org/wiki/xacro" name="element">
+    xmlns:xacro="http://www.ros.org/wiki/xacro" name="element">
 
     <!-- Macro for a single element of box geometry -->
     <xacro:macro name="elem" params="element_number element_colour:=White">
