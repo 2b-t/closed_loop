@@ -1,16 +1,16 @@
 <?xml version="1.0"?>
 <package>
-  <name>closed_loop</name>
-  <version>0.0.1</version>
-  <description>The closed_loop package</description>
-  
-  <maintainer email="tobit.flatscher@outlook.com">tobit</maintainer>
+    <name>closed_loop</name>
+    <version>0.0.1</version>
+    <description>The closed_loop package</description>
 
-  <license>TODO</license>
-  
-  <buildtool_depend>catkin</buildtool_depend>
+    <maintainer email="tobit.flatscher@outlook.com">tobit</maintainer>
 
-  <export>
-  </export>
+    <license>TODO</license>
+
+    <buildtool_depend>catkin</buildtool_depend>
+
+    <export>
+    </export>
 </package>
     
