@@ -43,7 +43,7 @@
 
     <!-- Joints -->
     <!-- 1 to world -->
-    <joint name="1_to_world" type="fixed">
+    <joint name="1_to_world" type="floating">
         <parent link="world"/>
         <child  link="${element_name}_1"/>
         <origin xyz="0 ${height/2} 1" rpy="0 0 0"/>
