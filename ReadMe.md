@@ -17,35 +17,36 @@ In this workaround **closed loops are broken up into serial chains** and the **m
 
 The files simulate a simple [four-bar linkage](https://en.wikipedia.org/wiki/Four-bar_linkage) similar to the example in SDF by [The Construct](https://youtu.be/hglRGiNHRno) that collapses to the side under gravity.
 
-- The `/doc` folder contains additional documentation:
+- The [`/doc`](./doc) folder contains additional documentation:
   - [`/doc/Adapt.md`](./doc/Adapt.md) describes how you can adapt the same principle to your parallel robot
   - [`/doc/Docker.md`](./doc/Docker.md) describes how the supplied Docker can be used
-- The `/docker` folder contains several Docker and Docker-Compose configurations
+- The [`/docker`](./docker) folder contains several Docker and Docker-Compose configurations
 - [`/launch/closed_loop.launch`](./launch/closed_loop.launch) is the *launch-file* for the ROS parameter server and loads the geometry into Gazebo
-- The `/model` folder contains the Xacro URDF files:
+- The [`/model`](./model) folder contains the Xacro URDF files:
   - [`/model/closed_loop.xacro`](./model/closed_loop.xacro) is the main file that *loads the components located in the other two Xacro files*
   - [`/model/parameters.xacro`](./model/parameters.xacro) contains the *geometry parameters* such as height, depth, width, mass and macros for the inertial matrix
   - [`/model/element.xacro`](./model/element.xacro) contains macros for a single element and *creates the entire geometry*
-- The hidden folders `/.devcontainer` and `/.vscode` contain several configuration files for Visual Studio Code
+- The hidden folders [`/.devcontainer`](./.devcontainer) and [`/.vscode`](./.vscode) contain several configuration files for Visual Studio Code
 
 ## 1.1 Launch the solution
 
 You can either download this repository directly and place it as a package into an existing ROS workspace or used the supplied Docker as discussed in more detail in [`/doc/Docker.md`](./doc/Docker.md).
 
-**Rebuild your workspace** (assuming you named it `closed_loop_ws` and placed it inside `home`) and then source it again with
+**Rebuild your workspace** (assuming you named it `closed_loop_ws` and placed it inside `home`) with
 
 ```shell
 $ cd ~/closed_loop_ws
 $ catkin build
-$ source /devel/setup.bash
 ```
-**Launch Gazebo_ROS** by typing
+**Launch Gazebo** by typing
 
 ```shell
+$ source /devel/setup.bash
 $ roslaunch gazebo_ros empty_world.launch
 ```
 and my corresponding **launch file** that launches the ROS parameter server and loads the UDRF-model into GazeboSim with
 ```shell
+$ source /devel/setup.bash
 $ roslaunch closed_loop closed_loop.launch
 ```
 This should bring up a simple four-bar linkage in Gazebo that collapses to the side.
