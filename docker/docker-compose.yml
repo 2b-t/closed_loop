@@ -1,0 +1,10 @@
+version: "3.9"
+services:
+  ros_docker:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    tty: true
+    volumes:
+      - ..:/closed_loop_ws/src/closed_loop
+
