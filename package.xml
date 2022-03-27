@@ -2,9 +2,9 @@
 <package>
     <name>closed_loop</name>
     <version>0.0.1</version>
-    <description>The closed_loop package</description>
+    <description>A demo package showing how parallel robots can be simulated with Gazebo starting from a URDF with serial chains.</description>
 
-    <maintainer email="tobit.flatscher@outlook.com">tobit</maintainer>
+    <maintainer email="tobit.flatscher@outlook.com">Tobit Flatscher</maintainer>
 
     <license>TODO</license>
 
