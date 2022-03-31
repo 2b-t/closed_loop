@@ -41,12 +41,12 @@ $ catkin build
 **Launch Gazebo** by typing
 
 ```shell
-$ source /devel/setup.bash
+$ source devel/setup.bash
 $ roslaunch gazebo_ros empty_world.launch
 ```
 and my corresponding **launch file** that launches the ROS parameter server and loads the UDRF-model into GazeboSim with
 ```shell
-$ source /devel/setup.bash
+$ source devel/setup.bash
 $ roslaunch closed_loop closed_loop.launch
 ```
 This should bring up a simple four-bar linkage in Gazebo that collapses to the side.
