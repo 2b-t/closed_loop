@@ -70,7 +70,7 @@
         <origin xyz="0 ${-height} 0" rpy="${-pi/2} 0 0"/>
     </joint>
 
-    <!-- 1 to 4: Close the loop by injection of SDF-code into UDRF -->
+    <!-- 1 to 4 Close the loop by injection of SDF-code into UDRF -->
     <!-- You can even use macro syntax ${} here as illustraded by the
          the variable ${element_name}. -->
     <!-- The location of the joint in the parent frame is determined 
