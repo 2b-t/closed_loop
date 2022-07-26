@@ -36,18 +36,12 @@ You can either download this repository directly and place it as a package into 
 
 ```shell
 $ cd ~/closed_loop_ws
-$ catkin build
+$ colcon build
 ```
-**Launch Gazebo** by typing
-
+**Launch Gazebo** the corresponding **launch file** that launches the ROS parameter server and loads the UDRF-model into GazeboSim with
 ```shell
-$ source devel/setup.bash
-$ roslaunch gazebo_ros empty_world.launch
-```
-and my corresponding **launch file** that launches the ROS parameter server and loads the UDRF-model into GazeboSim with
-```shell
-$ source devel/setup.bash
-$ roslaunch closed_loop closed_loop.launch
+$ source install/setup.bash
+$ ros2 launch closed_loop closed_loop.launch.py
 ```
 This should bring up a simple four-bar linkage in Gazebo that collapses to the side.
 

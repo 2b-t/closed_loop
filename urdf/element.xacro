@@ -1,9 +1,8 @@
 <?xml version="1.0"?>
-<robot 
-    xmlns:xacro="http://www.ros.org/wiki/xacro" name="element">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="element">
 
     <!-- Macro for a single element of box geometry -->
-    <xacro:macro name="elem" params="element_number element_colour:=White">
+    <xacro:macro name="elem" params="element_number is_gravity:=false element_colour:=White">
         <!-- Link without joint -->
         <link name="${element_name}_${element_number}">
             <visual>
@@ -27,7 +26,7 @@
         <gazebo reference="${element_name}_${element_number}">
             <selfCollide>true</selfCollide>
             <static>false</static>
-            <turnGravityOff>false</turnGravityOff>
+            <turnGravityOff>${not is_gravity}</turnGravityOff>
             <material>Gazebo/${element_colour}</material>
         </gazebo>
     </xacro:macro>
@@ -36,10 +35,10 @@
     <link name="world"/>
 
     <!-- Elements without joints -->
-    <xacro:elem element_number="1" element_colour="Red"   />
-    <xacro:elem element_number="2" element_colour="Green" />
-    <xacro:elem element_number="3" element_colour="Blue"  />
-    <xacro:elem element_number="4" element_colour="Yellow"/>
+    <xacro:elem element_number="1" is_gravity="$(arg is_gravity)" element_colour="Red"/>
+    <xacro:elem element_number="2" is_gravity="$(arg is_gravity)" element_colour="Green"/>
+    <xacro:elem element_number="3" is_gravity="$(arg is_gravity)" element_colour="Blue"/>
+    <xacro:elem element_number="4" is_gravity="$(arg is_gravity)" element_colour="Yellow"/>
 
     <!-- Joints -->
     <!-- 1 to world -->
@@ -70,7 +69,7 @@
         <origin xyz="0 ${-height} 0" rpy="${-pi/2} 0 0"/>
     </joint>
 
-    <!-- 1 to 4: Close the loop by injection of SDF-code into UDRF -->
+    <!-- 1 to 4 - Close the loop by injection of SDF-code into UDRF -->
     <!-- You can even use macro syntax ${} here as illustraded by the
          the variable ${element_name}. -->
     <!-- The location of the joint in the parent frame is determined 

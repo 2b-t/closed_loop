@@ -1,18 +1,18 @@
 #!/bin/bash
-# Bash script for sourcing either the current workspace environment or the default ROS one located in '/opt/ros/${ROS_DISTRO}'
+# Bash script for sourcing either the current workspace environment or the default ROS2 one located in /opt/ros/${ROS_DISTRO}
 # Author: Tobit Flatscher - github.com/2b-t (2021)
 #
-# Usage: - $ ./ros_source.sh
-#          Defaults to "noetic"
-#        - $ ./ros_source.sh <ros_distro>
-#          ros_distro: Optional ROS distribution e.g. "melodic"
+# Usage: - $ ./ros2_source.sh
+#          Defaults to "galactic"
+#        - $ ./ros2_source.sh <ros2_distro>
+#          ros2_distro: Optional ROS distribution e.g. "galactic"
 
 
 function main {
-  ROS_DISTRO=${1:-"noetic"}
-  CURRENT_PATH=$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)
-  WORKSPACE_SOURCE_FILE="${CURRENT_PATH}/../devel/setup.bash"
-  DISTRO_SOURCE_FILE="/opt/ros/${ROS_DISTRO}/setup.bash"
+  local ROS_DISTRO=${1:-"galactic"}
+  local CURRENT_PATH=$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)
+  local WORKSPACE_SOURCE_FILE="${CURRENT_PATH}/../install/setup.bash"
+  local DISTRO_SOURCE_FILE="/opt/ros/${ROS_DISTRO}/setup.bash"
 
   # Check if file local 'setup.bash' exists
   if [ -f "${WORKSPACE_SOURCE_FILE}" ]

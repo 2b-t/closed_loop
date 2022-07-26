@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
-<robot 
-    xmlns:xacro="http://www.ros.org/wiki/xacro" >  
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >  
 
     <!-- Box geometry -->
     <xacro:property name="element_name" value="element"/>
@@ -8,6 +7,7 @@
     <xacro:property name="height"       value="0.7"/>
     <xacro:property name="thickness"    value="0.1"/>
     <xacro:property name="mass"         value="5.0"/>
+    <xacro:arg name="is_gravity" default="true"/>
 
     <!-- Macro for inertia matrix for rectangular box around its center -->
     <xacro:macro name="box_inertial" params="m x y z dx dy dz">

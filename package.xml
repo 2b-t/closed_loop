@@ -1,16 +1,19 @@
 <?xml version="1.0"?>
-<package>
-    <name>closed_loop</name>
-    <version>0.0.1</version>
-    <description>A demo package showing how parallel robots can be simulated with Gazebo starting from a URDF with serial chains.</description>
+<?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<package format="3">
+  <name>closed_loop</name>
+  <version>0.0.1</version>
+  <description>A demo package showing how parallel robots can be simulated with Gazebo starting from a URDF with serial chains.</description>
+  <maintainer email="tobit.flatscher@outlook.com">Tobit Flatscher</maintainer>
+  <license>MIT</license>
 
-    <maintainer email="tobit.flatscher@outlook.com">Tobit Flatscher</maintainer>
+  <buildtool_depend>ament_cmake</buildtool_depend>
 
-    <license>TODO</license>
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+  <exec_depend>xacro</exec_depend>
 
-    <buildtool_depend>catkin</buildtool_depend>
-
-    <export>
-    </export>
+  <export>
+    <build_type>ament_cmake</build_type>
+  </export>
 </package>
-    
