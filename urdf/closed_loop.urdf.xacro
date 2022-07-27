@@ -2,7 +2,69 @@
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="closed_loop">
 
     <!-- Files to include -->
-    <xacro:include filename="$(find closed_loop)/urdf/parameters.xacro"/>
     <xacro:include filename="$(find closed_loop)/urdf/element.xacro"/>
+    <xacro:include filename="$(find closed_loop)/urdf/parameters.xacro"/>
+    
+    <!-- Fixed world frame -->
+    <link name="world"/>
+
+    <!-- Elements without joints -->
+    <xacro:elem name="${element_prefix}_1" m="${mass}" dx="${width}" dy="${height}" dz="${thickness}" is_gravity="$(arg is_gravity)" colour="Red"/>
+    <xacro:elem name="${element_prefix}_2" m="${mass}" dx="${width}" dy="${height}" dz="${thickness}" is_gravity="$(arg is_gravity)" colour="Green"/>
+    <xacro:elem name="${element_prefix}_3" m="${mass}" dx="${width}" dy="${height}" dz="${thickness}" is_gravity="$(arg is_gravity)" colour="Blue"/>
+    <xacro:elem name="${element_prefix}_4" m="${mass}" dx="${width}" dy="${height}" dz="${thickness}" is_gravity="$(arg is_gravity)" colour="Yellow"/>
+
+    <!-- Joints -->
+    <!-- 1 to world -->
+    <joint name="1_to_world" type="fixed">
+        <parent link="world"/>
+        <child  link="${element_prefix}_1"/>
+        <origin xyz="0 ${height/2} ${height/2}" rpy="0 0 0"/>
+    </joint>
+    <!-- 2 to 1 -->
+    <joint name="2_to_1" type="continuous">
+        <axis xyz="1 0 0"/>
+        <parent link="${element_prefix}_1"/>
+        <child  link="${element_prefix}_2"/>
+        <origin xyz="0 ${-height} 0" rpy="${-pi/2} 0 0"/>
+    </joint>
+    <!-- 3 to 2 -->
+    <joint name="3_to_2" type="continuous">
+        <axis xyz="1 0 0"/>
+        <parent link="${element_prefix}_2"/>
+        <child  link="${element_prefix}_3"/>
+        <origin xyz="0 ${-height} 0" rpy="${-pi/2} 0 0"/>
+    </joint>
+    <!-- 4 to 3 -->
+    <joint name="4_to_3" type="continuous">
+        <axis xyz="1 0 0"/>
+        <parent link="${element_prefix}_3"/>
+        <child  link="${element_prefix}_4"/>
+        <origin xyz="0 ${-height} 0" rpy="${-pi/2} 0 0"/>
+    </joint>
+
+    <!-- 1 to 4 - Close the loop by injection of SDF-code into UDRF -->
+    <!-- You can even use macro syntax ${} here as illustraded by the
+         the variable ${element_name}. -->
+    <!-- The location of the joint in the parent frame is determined 
+         by the location of the child and its initial position! -->
+    <gazebo>
+        <joint name='1_to_4' type='revolute'>
+            <child>${element_prefix}_1</child>
+            <parent>${element_prefix}_4</parent>
+            <axis>
+                <xyz>1 0 0</xyz>
+                <limit>
+                    <lower>-1e+16</lower>
+                    <upper>1e+16</upper>
+                </limit>
+                <dynamics>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+    </gazebo>
 
 </robot>

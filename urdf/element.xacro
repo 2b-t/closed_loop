@@ -1,96 +1,45 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="element">
 
+    <!-- Macro for inertia matrix for rectangular box around its center -->
+    <xacro:macro name="box_inertial" params="m x y z dx dy dz">
+        <inertial>
+            <mass  value="${m}"/>
+            <origin xyz="${x} ${y} ${z}" rpy="0 0 0"/>
+            <inertia ixx="${m/12*(dy*dy + dz*dz)}" ixy="0.0" ixz="0.0"
+                     iyy="${m/12*(dx*dx + dz*dz)}" iyz="0.0"
+                     izz="${m/12*(dx*dx + dy*dy)}"/>
+        </inertial>
+    </xacro:macro>
+
     <!-- Macro for a single element of box geometry -->
-    <xacro:macro name="elem" params="element_number is_gravity:=false element_colour:=White">
+    <xacro:macro name="elem" params="name m dx dy dz is_gravity:=false colour:=White">
         <!-- Link without joint -->
-        <link name="${element_name}_${element_number}">
+        <link name="${name}">
             <visual>
                 <geometry>
-                    <box size="${width} ${height} ${thickness}"/>
+                    <box size="${dx} ${dy} ${dz}"/>
                 </geometry>
-                <origin xyz="0 ${-height/2} 0" rpy="0 0 0"/>
+                <origin xyz="0 ${-dy/2} 0" rpy="0 0 0"/>
             </visual>
             <collision>
                 <geometry>
-                    <box size="${width} ${height} ${thickness}"/>
+                    <box size="${dx} ${dy} ${dz}"/>
                 </geometry>
-                <origin xyz="0 ${-height/2} 0" rpy="0 0 0"/>
+                <origin xyz="0 ${-dy/2} 0" rpy="0 0 0"/>
             </collision>
             <xacro:box_inertial m="${mass}" 
-                                x="0"          y="${-height/2}"  z="0" 
-                                dx="${width}" dy="${height}"    dz="${thickness}"/>
+                                x="0"       y="${-dy/2}"  z="0" 
+                                dx="${dx}" dy="${dy}"    dz="${dz}"/>
         </link>
 
         <!-- Gazebo simulation settings -->
-        <gazebo reference="${element_name}_${element_number}">
+        <gazebo reference="${name}">
             <selfCollide>true</selfCollide>
             <static>false</static>
             <turnGravityOff>${not is_gravity}</turnGravityOff>
-            <material>Gazebo/${element_colour}</material>
+            <material>Gazebo/${colour}</material>
         </gazebo>
     </xacro:macro>
-
-    <!-- Fixed world frame -->
-    <link name="world"/>
-
-    <!-- Elements without joints -->
-    <xacro:elem element_number="1" is_gravity="$(arg is_gravity)" element_colour="Red"/>
-    <xacro:elem element_number="2" is_gravity="$(arg is_gravity)" element_colour="Green"/>
-    <xacro:elem element_number="3" is_gravity="$(arg is_gravity)" element_colour="Blue"/>
-    <xacro:elem element_number="4" is_gravity="$(arg is_gravity)" element_colour="Yellow"/>
-
-    <!-- Joints -->
-    <!-- 1 to world -->
-    <joint name="1_to_world" type="fixed">
-        <parent link="world"/>
-        <child  link="${element_name}_1"/>
-        <origin xyz="0 ${height/2} ${height/2}" rpy="0 0 0"/>
-    </joint>
-    <!-- 2 to 1 -->
-    <joint name="2_to_1" type="continuous">
-        <axis xyz="1 0 0"/>
-        <parent link="${element_name}_1"/>
-        <child  link="${element_name}_2"/>
-        <origin xyz="0 ${-height} 0" rpy="${-pi/2} 0 0"/>
-    </joint>
-    <!-- 3 to 2 -->
-    <joint name="3_to_2" type="continuous">
-        <axis xyz="1 0 0"/>
-        <parent link="${element_name}_2"/>
-        <child  link="${element_name}_3"/>
-        <origin xyz="0 ${-height} 0" rpy="${-pi/2} 0 0"/>
-    </joint>
-    <!-- 4 to 3 -->
-    <joint name="4_to_3" type="continuous">
-        <axis xyz="1 0 0"/>
-        <parent link="${element_name}_3"/>
-        <child  link="${element_name}_4"/>
-        <origin xyz="0 ${-height} 0" rpy="${-pi/2} 0 0"/>
-    </joint>
-
-    <!-- 1 to 4 - Close the loop by injection of SDF-code into UDRF -->
-    <!-- You can even use macro syntax ${} here as illustraded by the
-         the variable ${element_name}. -->
-    <!-- The location of the joint in the parent frame is determined 
-         by the location of the child and its initial position! -->
-    <gazebo>
-        <joint name='1_to_4' type='revolute'>
-            <child>${element_name}_1</child>
-            <parent>${element_name}_4</parent>
-            <axis>
-                <xyz>1 0 0</xyz>
-                <limit>
-                    <lower>-1e+16</lower>
-                    <upper>1e+16</upper>
-                </limit>
-                <dynamics>
-                    <spring_reference>0</spring_reference>
-                    <spring_stiffness>0</spring_stiffness>
-                </dynamics>
-                <use_parent_model_frame>1</use_parent_model_frame>
-            </axis>
-        </joint>
-    </gazebo>
 
 </robot>
