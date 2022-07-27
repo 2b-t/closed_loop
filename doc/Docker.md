@@ -94,9 +94,9 @@ If your GPU does not support nVidia and/or you do not have the `nvidia-container
 
 #### 1.2.3 Useful commands
 
-The Docker comes with several useful commands that are supplied by means of the [`ros_source.bash`](./.vscode/ros_source.bash) script located inside [`.vscode`](./.vscode) and registered inside the `.bashrc` file:
+The Docker comes with several useful commands that are supplied by means of the [`ros2_source.bash`](./.vscode/ros2_source.bash) script located inside [`.vscode`](./.vscode) and registered inside the `.bashrc` file:
 
-- `$ rsource`: Either sources the `/devel/setup.bash` of the current workspace or the principal one of the used ROS distribution located at `/opt/ros/${ROS_DISTRO}`
+- `$ rsource`: Either sources the `install/setup.bash` of the current workspace or the principal one of the used ROS distribution located at `/opt/ros/${ROS_DISTRO}`
 - `$ rbuild`: Builds the workspace inside the Docker regardless of your current console location
 - `$ rclean`: Cleans the workspace inside the Docker regardless of your current console location without asking for confirmation
 
