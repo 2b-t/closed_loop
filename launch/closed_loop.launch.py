@@ -22,7 +22,7 @@ def generate_launch_description():
     )
   ]
   
-  xacro_file = PathJoinSubstitution([FindPackageShare("closed_loop"), "urdf", "closed_loop.xacro"])
+  xacro_file = PathJoinSubstitution([FindPackageShare("closed_loop"), "urdf", "closed_loop.urdf.xacro"])
   robot_description = Command(
     [
       PathJoinSubstitution([FindExecutable(name="xacro")]), 
