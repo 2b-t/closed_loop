@@ -42,7 +42,7 @@ You can either download this repository directly and place it as a package into 
 $ cd ~/closed_loop_ws
 $ colcon build
 ```
-**Launch Gazebo** the corresponding **launch file** that launches the ROS parameter server and loads the UDRF-model into GazeboSim with
+Run the **launch file** that opens Gazebo, loads the URDF and spawns it into Gazebo
 ```bash
 $ source install/setup.bash
 $ ros2 launch closed_loop closed_loop.launch.py
