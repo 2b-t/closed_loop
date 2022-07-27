@@ -19,17 +19,17 @@ The files simulate a simple [four-bar linkage](https://en.wikipedia.org/wiki/Fou
 
 ```bash
 .
-├── doc/                       # contains additional documentation:
-│   ├── doc/Adapt.md           # describes how you can adapt the same principle to your parallel robot
-│   └── doc/Docker.md          # describes how the supplied Docker can be used
-├── docker/                    # contains several Docker and Docker-Compose configurations
-├── launch/closed_loop.launch  # the mainlaunch file
+├── doc/                          # contains additional documentation:
+│   ├── doc/Adapt.md              # describes how you can adapt the same principle to your parallel robot
+│   └── doc/Docker.md             # describes how the supplied Docker can be used
+├── docker/                       # contains several Docker and Docker-Compose configurations
+├── launch/closed_loop.launch.py  # the mainlaunch file
 ├── urdf/
-│   ├── closed_loop.urdf.xacro # the main URDF Xacro
-│   ├── element.xacro          # contains definition of a single element
-│   └── parameters.xacro       # contains geometry parameters
-├── .devcontainer/             # contains configuration files for containers in Visual Studio Code
-└── .vscode/                   # contains configuration files for Visual Studio Code
+│   ├── closed_loop.urdf.xacro    # the main URDF Xacro
+│   ├── element.xacro             # contains definition of a single element
+│   └── parameters.xacro          # contains geometry parameters
+├── .devcontainer/                # contains configuration files for containers in Visual Studio Code
+└── .vscode/                      # contains configuration files for Visual Studio Code
 ```
 
 ## 1.1 Launch the solution
