@@ -1,4 +1,4 @@
-FROM ros:galactic-ros-base
+FROM ros:humble-ros-base
 
 ENV DEBIAN_FRONTEND=noninteractive
 

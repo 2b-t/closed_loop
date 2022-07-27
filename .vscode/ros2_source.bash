@@ -3,13 +3,13 @@
 # Author: Tobit Flatscher - github.com/2b-t (2021)
 #
 # Usage: - $ ./ros2_source.sh
-#          Defaults to "galactic"
+#          Defaults to "humble"
 #        - $ ./ros2_source.sh <ros2_distro>
-#          ros2_distro: Optional ROS distribution e.g. "galactic"
+#          ros2_distro: Optional ROS distribution e.g. "humble"
 
 
 function main {
-  local ROS_DISTRO=${1:-"galactic"}
+  local ROS_DISTRO=${1:-"humble"}
   local CURRENT_PATH=$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)
   local WORKSPACE_SOURCE_FILE="${CURRENT_PATH}/../install/setup.bash"
   local DISTRO_SOURCE_FILE="/opt/ros/${ROS_DISTRO}/setup.bash"
