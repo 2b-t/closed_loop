@@ -6,9 +6,10 @@
 
     <maintainer email="tobit.flatscher@outlook.com">Tobit Flatscher</maintainer>
 
-    <license>TODO</license>
+    <license>MIT</license>
 
     <buildtool_depend>catkin</buildtool_depend>
+    <run_depend>xacro</run_depend>
 
     <export>
     </export>

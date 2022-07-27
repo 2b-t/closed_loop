@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="element">
+
+    <!-- Macro for inertia matrix for rectangular box around its center -->
+    <xacro:macro name="box_inertial" params="m x y z dx dy dz">
+        <inertial>
+            <mass  value="${m}"/>
+            <origin xyz="${x} ${y} ${z}" rpy="0 0 0"/>
+            <inertia ixx="${m/12*(dy*dy + dz*dz)}" ixy="0.0" ixz="0.0"
+                     iyy="${m/12*(dx*dx + dz*dz)}" iyz="0.0"
+                     izz="${m/12*(dx*dx + dy*dy)}"/>
+        </inertial>
+    </xacro:macro>
+
+    <!-- Macro for a single element of box geometry -->
+    <xacro:macro name="elem" params="name m dx dy dz is_gravity:=false colour:=White">
+        <!-- Link without joint -->
+        <link name="${name}">
+            <visual>
+                <geometry>
+                    <box size="${dx} ${dy} ${dz}"/>
+                </geometry>
+                <origin xyz="0 ${-dy/2} 0" rpy="0 0 0"/>
+            </visual>
+            <collision>
+                <geometry>
+                    <box size="${dx} ${dy} ${dz}"/>
+                </geometry>
+                <origin xyz="0 ${-dy/2} 0" rpy="0 0 0"/>
+            </collision>
+            <xacro:box_inertial m="${mass}" 
+                                x="0"       y="${-dy/2}"  z="0" 
+                                dx="${dx}" dy="${dy}"    dz="${dz}"/>
+        </link>
+
+        <!-- Gazebo simulation settings -->
+        <gazebo reference="${name}">
+            <selfCollide>true</selfCollide>
+            <static>false</static>
+            <turnGravityOff>${not is_gravity}</turnGravityOff>
+            <material>Gazebo/${colour}</material>
+        </gazebo>
+    </xacro:macro>
+
+</robot>

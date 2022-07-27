@@ -1,7 +1,8 @@
 <launch>	
     <!-- Convert the xacro-file and put it on the parameter server -->
-    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find closed_loop)/model/closed_loop.xacro'" />
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find closed_loop)/urdf/closed_loop.urdf.xacro'"/>
 
     <!-- Spawn the robot into Gazebo: URDF gets converted to SDF -->
-    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model closed_loop" />
+    <include file="$(find gazebo_ros)/launch/empty_world.launch"/>
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model closed_loop"/>
 </launch>
